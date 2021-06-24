@@ -1,19 +1,25 @@
-var a=function(nums){
-    if(nums.length==0) return 0;
-    let i=0;
-    for(let j=1;j<nums.length;j++){
-        if(nums[i]!=nums[j]){
-            i++;
-            nums[i]=nums[j];
+//排序
+var containsDuplicate = function (nums) {
+    nums.sort((a, b) => a - b);
+    let len = nums.length;
+    for (let i = 1; i < len; i++) {
+        if (nums[i - 1] == nums[i]) {
+            return true;
         }
     }
-    let num=[];
-    let k=0;
-    for(k;k<i+1;i++){
-        num[k]=nums[i];
-    }
-    console.log(num);
-    return i+1;
+    return false;
 };
+console.log(containsDuplicate([1, 2, 5,2, 8]));
 
-console.log(a([0,0,1,2,3,3]));
+//哈希表
+var containsDuplicate1=function(nums1){
+    const set=new Set();
+    for(const x of nums1){
+        if(set.has(x)){
+            return true;
+        }
+        set.add(x);
+    }
+    return false;
+};
+console.log(containsDuplicate1([1,5,4,2,3]));
